@@ -1,0 +1,33 @@
+{% extends 'employee.html' %}
+{% block content %}
+<table class="table table-striped table-inverse table-responsive p-4 text-center">
+    <thead class="thead-inverse">
+        <tr>
+            <th>Name</th>
+            <th>Employee Code</th>
+            <th>Address</th>
+            <th>Mobile</th>
+            <th>Position</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+             {% for employee_list in emp_list%}
+            <tr>
+            <td scope="row"> {{employee_list.name}}</td>
+            <td scope="row"> {{employee_list.emp_code}}</td>
+            <td scope="row"> {{employee_list.address}}</td>
+            <td scope="row"> {{employee_list.mobile}}</td>
+            <td scope="row"> {{employee_list.position}}</td>
+            <td scope="row"><a href="{% url 'employee_update' employee_list.id %}" class="btn btn-info btn-sm">Update</a>
+            <form action="{% url 'employee_delete' employee_list.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+            </form>      
+            </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <a href="/employee_form" class="btn btn-dark float-right"><i class="fas fa-user-plus p-2"></i></a>
+</table>
+{% endblock %}
