@@ -1,9 +1,9 @@
 from django import forms
 from .models import Employee,AdminForm
-class Employee_Login_Form(forms.Form):
+class Admin_Login_Form(forms.ModelForm):
     class Meta:
         model=AdminForm
-        field='__all__'
+        fields='__all__'
 
     
 

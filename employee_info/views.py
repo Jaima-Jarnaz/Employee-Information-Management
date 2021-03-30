@@ -1,17 +1,31 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.hashers import check_password,make_password
 from django.http import HttpResponse
 from .forms import *
 
 
+
 def index(request):
     if request.method=='POST':
-        form=Employee_Login_Form(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('employee_list')
+        form=Admin_Login_Form()
+        email=request.POST.get('email')
+        password=request.POST.get('password')
+        print(email+password)
+        e=AdminForm.objects.get(email=email)
+        if e:
+            if email==e.email:
+                request.session['email']=e.email
+                return redirect('employee_list')     
+            else: 
+                print("sorry")
+                return render(request,'index.html',{'form':form})
+        else:
+            return render(request,'index.html',{'form':form})
+        
     else:
-        form=Employee_Login_Form()
-    return render(request,'index.html',{'form':form})
+        form=Admin_Login_Form()
+        print("sorry2")
+        return render(request,'index.html',{'form':form})
 
 
 
