@@ -1,6 +1,10 @@
 ## Employee-Information-Management(CRUD)platform-Django,database postgresql
 >Very basic project for practising django where admin can login and manages all the information of employees which  contains all crud operations.
 
+ *For login use -  email :  admin@gmail.com  and  password  :  1234*
+ 
+>login is not properly validate enough right now later I'm gonna fixed that.if you enter another email or pass you can see the error something like this
+![error](error.PNG)
 
 >Here our app is employee_info.For making form, I used django 'model form', I created models first such as AdminForm,Designations,Employee.Then converted this models as form with the help of django 'forms' 
 
